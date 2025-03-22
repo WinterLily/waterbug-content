@@ -1,0 +1,990 @@
+/* Waterbug Dark Water Theme CSS */
+
+/* Import fonts */
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+:root {
+    /* Dark water color palette - adjusted for better contrast */
+    --water-darkest: #0a192f; /* Deeper ocean for content */
+    --water-dark: #051022; /* Dark water for background */
+    --water-medium: #1f4068; /* Midnight blue */
+    --water-accent: #36827f; /* Teal accent */
+    --water-glow: #4bc0c0; /* Aqua glow */
+    --water-surface: #152642; /* Water surface */
+    --text-primary: #e6f1ff; /* Bright text */
+    --text-secondary: #a8b2d1; /* Muted text */
+    --sand-light: #ccd6f6; /* Light sand */
+    --coral-accent: #ff7e67; /* Coral accent */
+
+    /* Layout */
+    --sidebar-width: 320px; /* Updated from 280px */
+    --content-max-width: 900px;
+    --border-radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Base layout */
+body {
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Nunito", sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--water-dark);
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Enhanced dark water pond effect */
+.water-surface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Subtle water background texture */
+.water-surface::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 25, 47, 0.3) 0%,
+        rgba(17, 34, 64, 0.5) 100%
+    );
+    opacity: 0.4;
+}
+
+/* Ambient water "glow" */
+.water-surface::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(
+            circle at 30% 40%,
+            rgba(75, 192, 192, 0.12) 0%,
+            transparent 60%
+        ),
+        radial-gradient(
+            circle at 70% 60%,
+            rgba(54, 130, 127, 0.1) 0%,
+            transparent 50%
+        );
+    animation: ambientGlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGlow {
+    0% {
+        opacity: 0.5;
+        background-position: 0% 0%;
+    }
+    100% {
+        opacity: 0.8;
+        background-position: 100% 100%;
+    }
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(75, 192, 192, 0.5) 0%,
+        rgba(54, 130, 127, 0.3) 40%,
+        rgba(31, 64, 104, 0.2) 60%,
+        rgba(10, 25, 47, 0) 70%
+    );
+    transform: scale(0);
+    animation: rippleEffect 15s cubic-bezier(0.33, 1, 0.68, 1) infinite;
+    filter: blur(5px);
+}
+
+@keyframes rippleEffect {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Generate multiple ripples with different positions and delays */
+.ripple:nth-child(1) {
+    width: 300px;
+    height: 300px;
+    left: 15%;
+    top: 20%;
+    animation-delay: 0s;
+}
+
+.ripple:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    right: 20%;
+    top: 30%;
+    animation-delay: 4s;
+}
+
+.ripple:nth-child(3) {
+    width: 250px;
+    height: 250px;
+    left: 40%;
+    bottom: 30%;
+    animation-delay: 8s;
+}
+
+.ripple:nth-child(4) {
+    width: 350px;
+    height: 350px;
+    right: 30%;
+    bottom: 20%;
+    animation-delay: 5s;
+}
+
+.ripple:nth-child(5) {
+    width: 280px;
+    height: 280px;
+    left: 25%;
+    bottom: 60%;
+    animation-delay: 12s;
+}
+
+.ripple:nth-child(6) {
+    width: 320px;
+    height: 320px;
+    right: 35%;
+    top: 70%;
+    animation-delay: 7s;
+}
+
+.ripple:nth-child(7) {
+    width: 380px;
+    height: 380px;
+    left: 65%;
+    top: 15%;
+    animation-delay: 2s;
+}
+
+/* Floating dust particles effect */
+.dust-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: rgba(75, 192, 192, 0.2);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Sidebar */
+#sidebar {
+    width: var(--sidebar-width);
+    padding: 25px 20px;
+    background-color: rgba(5, 16, 34, 0.95);
+    backdrop-filter: blur(8px);
+    border-right: 1px solid rgba(54, 130, 127, 0.3);
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-shadow: 5px 0 15px rgba(5, 16, 34, 0.7);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+/* Cleaned up sidebar header and footer */
+.sidebar-header,
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(54, 130, 127, 0.3);
+}
+
+.sidebar-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(54, 130, 127, 0.3);
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 0.85em;
+    color: var(--text-secondary);
+}
+
+/* Make sidebar heading clickable */
+#sidebar h2 {
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: "Quicksand", sans-serif;
+    color: var(--water-glow);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(75, 192, 192, 0.5);
+}
+
+#sidebar h2:hover {
+    color: var(--text-primary);
+}
+
+/* Improved logo styling */
+.sidebar-logo {
+    height: 30px;
+    width: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-logo:hover {
+    opacity: 1;
+}
+
+.site-nav {
+    flex: 1;
+}
+
+/* Navigation styling */
+#sidebar ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+}
+
+#sidebar ul ul {
+    padding-left: 15px;
+    margin-top: 0.2rem;
+    border-left: 2px solid rgba(54, 130, 127, 0.5);
+    list-style-type: none;
+}
+
+#sidebar li {
+    list-style-type: none;
+    margin: 10px 0;
+    transition: all 0.2s ease;
+}
+
+/* Improved navigation styling with contained effects */
+#sidebar a {
+    color: var(--sand-light);
+    text-decoration: none;
+    display: block;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-weight: 500;
+    border-bottom: none;
+    position: relative;
+    overflow: hidden;
+    margin: 2px 0;
+}
+
+/* Subtle hover state */
+#sidebar a:hover {
+    background-color: rgba(54, 130, 127, 0.25);
+    color: var(--text-primary);
+    transform: translateX(3px);
+    box-shadow: 0 0 8px rgba(75, 192, 192, 0.4);
+}
+
+/* Active state - more distinct but not overpowering */
+#sidebar a.active {
+    background-color: rgba(54, 130, 127, 0.4);
+    color: var(--text-primary);
+    box-shadow: 0 0 10px rgba(75, 192, 192, 0.3) inset;
+    border-left: 3px solid var(--water-glow);
+    padding-left: 9px;
+}
+
+/* Remove the transform on active items for cleaner look */
+#sidebar a.active:hover {
+    transform: translateX(0);
+}
+
+#sidebar span {
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    display: block;
+    border-bottom: 1px dashed var(--water-accent);
+}
+
+/* Refined accordion heading styles */
+.accordion-heading {
+    cursor: pointer;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-weight: 500;
+    color: var(--sand-light);
+    display: block;
+    position: relative;
+    overflow: hidden;
+    margin: 2px 0;
+}
+
+/* Improved accordion styling */
+.accordion-heading:hover {
+    background-color: rgba(54, 130, 127, 0.25);
+    color: var(--text-primary);
+    transform: translateX(2px);
+}
+
+/* Active accordion section */
+.accordion-section.open > .accordion-heading {
+    color: var(--water-glow);
+    text-shadow: 0 0 8px rgba(75, 192, 192, 0.3);
+}
+
+/* Add a subtle indicator icon for expandable sections */
+.accordion-heading::after {
+    content: "+";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.accordion-section.open > .accordion-heading::after {
+    content: "−";
+    color: var(--water-glow);
+}
+
+/* Accordion content with improved containment */
+.accordion-content {
+    padding-left: 15px;
+    margin: 2px 0;
+    border-left: 2px solid rgba(54, 130, 127, 0.5);
+    overflow: hidden;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.accordion-section.open > .accordion-content {
+    display: block;
+}
+
+/* Smooth transitions for accordion content */
+.accordion-content {
+    overflow: hidden;
+    max-height: 0;
+    transition:
+        max-height 0.3s ease-out,
+        opacity 0.3s ease;
+    opacity: 0;
+}
+
+.accordion-section.open > .accordion-content {
+    max-height: 1000px;
+    opacity: 1;
+}
+
+/* Ripple effect */
+#sidebar a::after,
+.accordion-heading::after {
+    content: "";
+    position: absolute;
+    background: radial-gradient(
+        circle,
+        rgba(75, 192, 192, 0.3) 0%,
+        transparent 70%
+    );
+    width: 150%;
+    height: 150%;
+    left: -25%;
+    top: -25%;
+    opacity: 0;
+    transform: scale(0.5);
+    transition:
+        opacity 0.5s,
+        transform 0.3s;
+    pointer-events: none;
+    z-index: -1;
+}
+
+#sidebar a:active::after,
+.accordion-heading:active::after {
+    opacity: 1;
+    transform: scale(1);
+    transition: 0s;
+}
+
+/* Main content */
+#content {
+    flex: 1;
+    padding: 30px;
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    background-color: rgba(5, 16, 34, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 25px rgba(5, 16, 34, 0.6);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(54, 130, 127, 0.3);
+    position: relative;
+    z-index: 5;
+}
+
+/* Content glow effect */
+#content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 30px rgba(75, 192, 192, 0.2);
+    z-index: -1;
+    animation: contentGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes contentGlow {
+    0% {
+        box-shadow: 0 0 20px rgba(75, 192, 192, 0.15);
+    }
+    100% {
+        box-shadow: 0 0 40px rgba(75, 192, 192, 0.25);
+    }
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Quicksand", sans-serif;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--water-glow);
+}
+
+h1 {
+    padding-bottom: 0.3em;
+    font-size: 2.2em;
+    border-bottom: 2px solid var(--water-accent);
+    text-shadow: 0 0 15px rgba(75, 192, 192, 0.7);
+}
+
+h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.7em;
+    border-bottom: 1px solid var(--water-accent);
+    text-shadow: 0 0 10px rgba(75, 192, 192, 0.6);
+}
+
+h3 {
+    font-size: 1.4em;
+    text-shadow: 0 0 8px rgba(75, 192, 192, 0.5);
+}
+
+h4 {
+    font-size: 1.2em;
+    text-shadow: 0 0 6px rgba(75, 192, 192, 0.4);
+}
+
+h5 {
+    font-size: 1em;
+    text-shadow: 0 0 4px rgba(75, 192, 192, 0.3);
+}
+
+h6 {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--water-glow);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--water-accent);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+a:hover {
+    color: var(--coral-accent);
+    border-bottom: 1px solid var(--coral-accent);
+    text-shadow: 0 0 8px rgba(255, 126, 103, 0.6);
+}
+
+/* Small ripple effect on link hover */
+a:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--water-glow);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+    box-shadow: 0 0 8px rgba(75, 192, 192, 0.6);
+}
+
+a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    background-color: var(--coral-accent);
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+/* Code blocks */
+pre {
+    background-color: rgba(10, 25, 47, 0.7);
+    padding: 16px;
+    border-radius: var(--border-radius);
+    overflow: auto;
+    border-left: 4px solid var(--water-accent);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+code {
+    font-family: "Courier New", Courier, monospace;
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(31, 64, 104, 0.6);
+    border-radius: 3px;
+}
+
+pre code {
+    padding: 0;
+    margin: 0;
+    font-size: 95%;
+    word-break: normal;
+    white-space: pre;
+    background: transparent;
+    border: 0;
+}
+
+/* Blockquotes */
+blockquote {
+    padding: 0 1em;
+    color: var(--text-secondary);
+    border-left: 0.25em solid var(--water-accent);
+    margin: 0 0 16px 0;
+    background-color: rgba(31, 64, 104, 0.5);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    padding: 10px 15px;
+}
+
+hr {
+    height: 0.25em;
+    padding: 0;
+    margin: 24px 0;
+    background-color: var(--water-accent);
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 10px rgba(75, 192, 192, 0.5);
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    box-sizing: content-box;
+    border-radius: 5px;
+    box-shadow: 0 3px 15px rgba(10, 25, 47, 0.5);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 20px rgba(75, 192, 192, 0.4);
+}
+
+/* Remove glow and effects from logo and PNGs with transparency */
+.sidebar-logo,
+img[src$=".png"] {
+    box-shadow: none;
+    filter: none;
+}
+
+/* Override hover effects for PNG images */
+.sidebar-logo:hover,
+img[src$=".png"]:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Tables */
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-top: 0;
+    margin-bottom: 16px;
+    width: 100%;
+    overflow: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 10px rgba(10, 25, 47, 0.4);
+}
+
+table th,
+table td {
+    padding: 8px 13px;
+    border: 1px solid var(--water-medium);
+}
+
+table th {
+    background-color: rgba(54, 130, 127, 0.3);
+    font-weight: 600;
+}
+
+table tr {
+    background-color: rgba(10, 25, 47, 0.6);
+    border-top: 1px solid var(--water-medium);
+    transition: background-color 0.2s ease;
+}
+
+table tr:nth-child(2n) {
+    background-color: rgba(31, 64, 104, 0.5);
+}
+
+table tr:hover {
+    background-color: rgba(54, 130, 127, 0.2);
+}
+
+/* Lists */
+ul,
+ol {
+    padding-left: 2em;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+li {
+    word-wrap: break-all;
+}
+
+li + li {
+    margin-top: 0.25em;
+}
+
+li > p {
+    margin-top: 16px;
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+    margin: 0 0.2em 0.25em -1.4em;
+    vertical-align: middle;
+    transform: scale(1.2);
+    accent-color: var(--water-accent);
+}
+
+/* Error page */
+.error-title {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: var(--coral-accent);
+    text-align: center;
+    text-shadow: 0 0 15px rgba(255, 126, 103, 0.7);
+}
+
+/* Loading indicator */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--water-glow);
+    font-size: 1.2rem;
+}
+
+.loading:after {
+    content: ".";
+    animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+    0%,
+    20% {
+        content: ".";
+    }
+    40% {
+        content: "..";
+    }
+    60% {
+        content: "...";
+    }
+    80%,
+    100% {
+        content: "";
+    }
+}
+
+/* Error message */
+.error {
+    color: var(--coral-accent);
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--coral-accent);
+    border-radius: var(--border-radius);
+    background-color: rgba(255, 126, 103, 0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        border-right: none;
+        border-bottom: 1px solid rgba(54, 130, 127, 0.3);
+    }
+
+    #content {
+        margin-top: 0;
+        border-radius: 0;
+    }
+}
+
+/* Utility Layout Classes */
+
+/* Flex Containers */
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-around {
+    display: flex;
+    justify-content: space-around;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid Layouts */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* Auto-responsive grid - automatically adjusts columns based on container width */
+.grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Card Components */
+.card {
+    background-color: rgba(5, 16, 34, 0.7);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    border: 1px solid rgba(54, 130, 127, 0.2);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    border-color: var(--water-accent);
+}
+
+.card-accent {
+    border-left: 4px solid var(--water-accent);
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(54, 130, 127, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.card-footer {
+    border-top: 1px solid rgba(54, 130, 127, 0.3);
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+/* Spacing Utilities */
+.p-0 {
+    padding: 0;
+}
+.p-1 {
+    padding: 0.25rem;
+}
+.p-2 {
+    padding: 0.5rem;
+}
+.p-3 {
+    padding: 1rem;
+}
+.p-4 {
+    padding: 1.5rem;
+}
+.p-5 {
+    padding: 3rem;
+}
+
+.m-0 {
+    margin: 0;
+}
+.m-1 {
+    margin: 0.25rem;
+}
+.m-2 {
+    margin: 0.5rem;
+}
+.m-3 {
+    margin: 1rem;
+}
+.m-4 {
+    margin: 1.5rem;
+}
+.m-5 {
+    margin: 3rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+/* Text alignment */
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-left {
+    text-align: left;
+}
+
+/* Background effects */
+.bg-glow {
+    position: relative;
+}
+
+.bg-glow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 15px rgba(75, 192, 192, 0.3);
+    z-index: -1;
+}
+
+/* Colors */
+.text-glow {
+    color: var(--water-glow);
+}
+.text-accent {
+    color: var(--water-accent);
+}
+.text-coral {
+    color: var(--coral-accent);
+}
+
+/* Responsive Image Handling */
+.responsive-img,
+.card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Optional - add a max-height for very tall images */
+.img-constrain {
+    max-height: 500px;
+    object-fit: contain;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}

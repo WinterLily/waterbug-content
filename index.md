@@ -11,6 +11,9 @@ Waterbug is a lightweight, memory-efficient markdown-based static site generator
 - **Content sourcing**: Pull content from git repositories automatically
 
 
-[Explore the architecture →](/about/architecture)
-[Learn about routing →](/about/routing)
-[Understanding caching →](/about/caching)
+[Explore the architecture →](/About/architecture)
+
+[Learn about routing →](/About/routing)
+
+[Understanding caching →](/About/caching)
+

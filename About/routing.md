@@ -32,5 +32,7 @@ pages/
 
 The routing system also handles requests for static assets like images, CSS, and JavaScript files.
 
+
+[Theming waterbug →](/About/theming)
+
 [Back to home](/)
-[Understanding caching →](/about/caching)

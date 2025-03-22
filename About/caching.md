@@ -37,5 +37,7 @@ Waterbug ensures your content stays up-to-date with:
 
 The intelligent caching system allows Waterbug to handle high traffic loads efficiently while maintaining low resource consumption.
 
+[Learn about the routing →](/About/routing)
+
 [Back to home](/)
-[Learn about the architecture →](/about/architecture)
+

@@ -29,6 +29,6 @@ Enables pulling content from git repositories, allowing distributed content crea
 
 The modular architecture allows each component to operate independently while communicating through well-defined interfaces.
 
-[Learn about routing →](/about/routing)
+[Learn about caching →](/About/caching)
 
 [Back to home](/)

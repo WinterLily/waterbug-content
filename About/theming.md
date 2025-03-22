@@ -38,5 +38,7 @@ You can create your own themes by:
 
 Themes allow complete customization of your site's appearance while maintaining separation between content and presentation.
 
+[Get started with Waterbug](/Documentation/getting_started)
+
 [Back to home](/)
 

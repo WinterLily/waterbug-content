@@ -1,4 +1,4 @@
-# 2. Architecture
+# 1. Architecture
 
 Waterbug follows a modular design pattern with clearly separated concerns. The core application is built in Rust for memory efficiency and performance.
 
@@ -29,5 +29,6 @@ Enables pulling content from git repositories, allowing distributed content crea
 
 The modular architecture allows each component to operate independently while communicating through well-defined interfaces.
 
+[Learn about routing →](/about/routing)
+
 [Back to home](/)
-[Learn about routing →](routing)

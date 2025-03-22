@@ -1,4 +1,4 @@
-# 4. Dynamic Routing
+# 3. Dynamic Routing
 
 Waterbug implements a flexible dynamic routing system that automatically creates your site structure from your content files.
 
@@ -33,4 +33,4 @@ pages/
 The routing system also handles requests for static assets like images, CSS, and JavaScript files.
 
 [Back to home](/)
-[Understanding caching →](caching)
+[Understanding caching →](/about/caching)

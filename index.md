@@ -1,4 +1,4 @@
-# 1. Welcome to Waterbug
+# Welcome to Waterbug
 
 Waterbug is a lightweight, memory-efficient markdown-based static site generator with dynamic routing capabilities. It's designed to be simple to use while providing modern web features and excellent performance.
 

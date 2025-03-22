@@ -1,4 +1,4 @@
-# 3. Caching
+# 2. Caching
 
 Waterbug's caching system is designed for maximum performance while remaining memory-efficient.
 

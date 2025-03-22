@@ -1,4 +1,4 @@
-# 5. Theming
+# 4. Theming
 
 Waterbug supports customizable themes that can transform the appearance of your site without changing your content.
 
@@ -39,4 +39,4 @@ You can create your own themes by:
 Themes allow complete customization of your site's appearance while maintaining separation between content and presentation.
 
 [Back to home](/)
-[Learn about content sourcing →](content-sourcing)
+

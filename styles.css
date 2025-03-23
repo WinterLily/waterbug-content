@@ -782,6 +782,14 @@ input[type="checkbox"] {
         margin-top: 0;
         border-radius: 0;
     }
+
+    .cover-image-container {
+        margin: -30px -30px 20px -30px;
+    }
+
+    .cover-image-container img {
+        height: 25vh;
+    }
 }
 
 /* Utility Layout Classes */
@@ -987,4 +995,36 @@ input[type="checkbox"] {
     .grid-4 {
         grid-template-columns: 1fr;
     }
+}
+
+/* Cover Image Styling */
+.cover-image-container {
+    margin: -30px -30px 30px -30px;
+    position: relative;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cover-image {
+    width: 100%;
+    max-height: 25vh;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.cover-image:hover {
+    transform: scale(1.03);
+}
+
+.cover-image-container div {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(5, 16, 34, 0.7);
+    padding: 8px 15px;
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    border-top-left-radius: 8px;
 }
